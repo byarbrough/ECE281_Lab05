@@ -196,7 +196,7 @@ LED <= CLOCKBUS_SIG(26 DOWNTO 19);
 
 	Inst_PRISM: PRISM PORT MAP(
 		Clock => Clockbus_Sig(23),
-		Reset_L => btn(3),
+		Reset_L => not btn(3),
 		--Control_Bus => ,
 		Input_0 => switch(3 downto 0),
 		Input_1 => switch(7 downto 4),
