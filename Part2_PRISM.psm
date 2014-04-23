@@ -1,33 +1,33 @@
-		   00	   0	NOP			N	0	Y
-		   01	   0	NOP			N	0	Y
-		   02	   0	NOP			N	0	Y
-		   03	   0	NOP			N	0	Y
-		   04	   0	NOP			N	0	Y
-		   05	   0	NOP			N	0	Y
-		   06	   0	NOP			N	0	Y
-		   07	   0	NOP			N	0	Y
-		   08	   0	NOP			N	0	Y
-		   09	   0	NOP			N	0	Y
-		   0A	   0	NOP			N	0	Y
-		   0B	   0	NOP			N	0	Y
-		   0C	   0	NOP			N	0	Y
-		   0D	   0	NOP			N	0	Y
-		   0E	   0	NOP			N	0	Y
-		   0F	   0	NOP			N	0	Y
-		   10	   0	NOP			N	0	Y
-		   11	   0	NOP			N	0	Y
-		   12	   0	NOP			N	0	Y
-		   13	   0	NOP			N	0	Y
-		   14	   0	NOP			N	0	Y
-		   15	   0	NOP			N	0	Y
-		   16	   0	NOP			N	0	Y
-		   17	   0	NOP			N	0	Y
-		   18	   0	NOP			N	0	Y
-		   19	   0	NOP			N	0	Y
-		   1A	   0	NOP			N	0	Y
-		   1B	   0	NOP			N	0	Y
-		   1C	   0	NOP			N	0	Y
-		   1D	   0	NOP			N	0	Y
+		   00	   7	LDAI	0		N	1	Y
+		   01	   0				Y	0	N
+		   02	   4	OUT	1		N	1	Y
+		   03	   1				Y	0	N
+		   04	   4	OUT	2		N	1	Y
+		   05	   2			initialized	Y	0	N
+	forwards	   06	   5	IN	0	test input	N	1	Y
+		   07	   0				Y	0	N
+		   08	   6	ADDI	9	subtract 7	N	1	Y
+		   09	   9				Y	0	N
+		   0A	   B	JN	backwards	jump if neg	N	2	Y
+		   0B	   C				Y	0	N
+		   0C	   1				Y	0	N
+		   0D	   F	LDAD	ones	load ones value	N	2	Y
+		   0E	   0				Y	0	N
+		   0F	   B				Y	0	N
+		   10	   6	ADDI	7	subtract 9	N	1	Y
+		   11	   7				Y	0	N
+		   12	   A	JZ	place	increment tens	N	2	Y
+		   13	   X				Y	0	N
+		   14	   X				Y	0	N
+		   15	   6	ADDI	1	increment	N	1	Y
+		   16	   1				Y	0	N
+		   17	   4	OUT	2	update output	N	1	Y
+		   18	   2				Y	0	N
+		   19	   9	JMP	forwards	repeat	N	2	Y
+		   1A	   6				Y	0	N
+		   1B	   0				Y	0	N
+	backwards	   1C	   5	IN	0	test input	N	1	Y
+		   1D	   0				Y	0	N
 		   1E	   0	NOP			N	0	Y
 		   1F	   0	NOP			N	0	Y
 		   20	   0	NOP			N	0	Y
@@ -174,8 +174,8 @@
 		   AD	   0	NOP			N	0	Y
 		   AE	   0	NOP			N	0	Y
 		   AF	   0	NOP			N	0	Y
-		   B0	   0	
-		   B1	   0	
+	ones	   B0	   0	
+	tens	   B1	   0	
 		   B2	   0	
 		   B3	   0	
 		   B4	   0	
