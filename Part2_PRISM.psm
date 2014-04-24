@@ -7,99 +7,99 @@
 	forwards	   06	   5	IN	0	test input	N	1	Y
 		   07	   0				Y	0	N
 		   08	   B	JN	backwards	jump if 8-F	N	2	Y
-		   09	   1				Y	0	N
+		   09	   0				Y	0	N
 		   0A	   2				Y	0	N
 		   0B	   F	LDAD	ones	get the ones digit	N	2	N
 		   0C	   0				Y	0	N
 		   0D	   B				Y	0	N
-		   0E	   0	NOP			N	0	N
-		   0F	   6	ADDI	7	subtract 9 to test	N	1	Y
-		   10	   7				Y	0	N
-		   11	   A	JZ	upTen	increment tens	N	2	Y
-		   12	   1				Y	0	N
-		   13	   4				Y	0	N
-		   14	   F	LDAD	ones	get the ones again	N	2	N
-		   15	   0				Y	0	N
-		   16	   B				Y	0	N
-		   17	   6	ADDI	1	increment	N	1	Y
-		   18	   1				Y	0	N
-		   19	   4	OUT	2	update output	N	1	Y
-		   1A	   2				Y	0	N
-		   1B	   D	STA	ones	store the digit	N	2	N
-		   1C	   0				Y	0	N
-		   1D	   B				Y	0	N
-		   1E	   9	JMP	forwards	repeat	N	2	Y
-		   1F	   6				Y	0	N
-		   20	   0				Y	0	N
-	backwards	   21	   5	IN	0	test input	N	1	Y
-		   22	   0				Y	0	N
-		   23	   1	NEG			N	0	N
-		   24	   B	JN	backwards	jump if 0-7	N	2	Y
-		   25	   1				Y	0	N
-		   26	   2				Y	0	N
-		   27	   F	LDAD	ones	get the ones digit	N	2	N
-		   28	   0				Y	0	N
-		   29	   B				Y	0	N
-		   2A	   A	JZ	downTen	increment tens	N	2	Y
-		   2B	   5				Y	0	N
-		   2C	   5				Y	0	N
-		   2D	   F	LDAD	ones	get the ones again	N	2	N
-		   2E	   0				Y	0	N
-		   2F	   B				Y	0	N
-		   30	   6	ADDI	F	decrement	N	1	Y
-		   31	   F				Y	0	N
-		   32	   4	OUT	2	update output	N	1	Y
-		   33	   2				Y	0	N
-		   34	   D	STA	ones	store the digit	N	2	N
-		   35	   0				Y	0	N
-		   36	   B				Y	0	N
-		   37	   9	JMP	forwards	repeat	N	2	Y
-		   38	   6				Y	0	N
-		   39	   0				Y	0	N
-	tenBack	   3A	   6	ADDI	F	decrement	N	1	Y
-		   3B	   F				Y	0	N
-		   3C	   4	OUT	2	update output	N	1	Y
-		   3D	   2				Y	0	N
-		   3E	   9	JMP	backwards	repeat	N	2	Y
+		   0E	   6	ADDI	7	zero if 9	N	1	Y
+		   0F	   7				Y	0	N
+		   10	   A	JZ	upTen	increment tens	N	2	Y
+		   11	   9				Y	0	N
+		   12	   3				Y	0	N
+		   13	   F	LDAD	ones	get the ones again	N	2	N
+		   14	   0				Y	0	N
+		   15	   B				Y	0	N
+		   16	   6	ADDI	1	increment	N	1	Y
+		   17	   1				Y	0	N
+	upResume	   18	   4	OUT	2	update output	N	1	Y
+		   19	   2				Y	0	N
+		   1A	   D	STA	ones	store the digit	N	2	N
+		   1B	   0				Y	0	N
+		   1C	   B				Y	0	N
+		   1D	   9	JMP	forwards	repeat	N	2	Y
+		   1E	   6				Y	0	N
+		   1F	   0				Y	0	N
+	backwards	   20	   5	IN	0	test input	N	1	Y
+		   21	   0				Y	0	N
+		   22	   1	NEG			N	0	N
+		   23	   B	JN	forwards	jump if 0-7	N	2	Y
+		   24	   6				Y	0	N
+		   25	   0				Y	0	N
+		   26	   F	LDAD	ones	get the ones digit	N	2	N
+		   27	   0				Y	0	N
+		   28	   B				Y	0	N
+		   29	   A	JZ	downTen	increment tens	N	2	Y
+		   2A	   8				Y	0	N
+		   2B	   4				Y	0	N
+		   2C	   F	LDAD	ones	get the ones again	N	2	N
+		   2D	   0				Y	0	N
+		   2E	   B				Y	0	N
+		   2F	   6	ADDI	F	decrement	N	1	Y
+		   30	   F				Y	0	N
+	downResume	   31	   4	OUT	2	update output	N	1	Y
+		   32	   2				Y	0	N
+		   33	   D	STA	ones	store the digit	N	2	N
+		   34	   0				Y	0	N
+		   35	   B				Y	0	N
+		   36	   9	JMP	backwards	repeat	N	2	Y
+		   37	   0				Y	0	N
+		   38	   2				Y	0	N
+	upTen	   39	   F	LDAD	tens	load tens place	N	2	Y
+		   3A	   1				Y	0	N
+		   3B	   B				Y	0	N
+		   3C	   6	ADDI	1	increment	N	1	Y
+		   3D	   1				Y	0	N
+		   3E	   D	STA	tens	store output	N	2	Y
 		   3F	   1				Y	0	N
-		   40	   2				Y	0	N
-	upTen	   41	   F	LDAD	tens	load tens place	N	2	Y
+		   40	   B				Y	0	N
+		   41	   4	OUT	1	update output	N	1	Y
 		   42	   1				Y	0	N
-		   43	   B				Y	0	N
-		   44	   6	ADDI	1	increment	N	1	Y
-		   45	   1				Y	0	N
-		   46	   D	STA	tens	store output	N	2	Y
+		   43	   7	LDAI	0	load a zero	N	1	Y
+		   44	   0				Y	0	N
+		   45	   9	JMP	upResume	resume count up	N	2	Y
+		   46	   8				Y	0	N
 		   47	   1				Y	0	N
-		   48	   B				Y	0	N
-		   49	   4	OUT	1	update output	N	1	Y
-		   4A	   1				Y	0	N
-		   4B	   7	LDAI	0	load a zero	N	1	Y
-		   4C	   0				Y	0	N
-		   4D	   4	OUT	2	update ones out	N	1	Y
-		   4E	   2				Y	0	N
-		   4F	   D	STA	ones		N	2	Y
-		   50	   0				Y	0	N
-		   51	   B				Y	0	N
-		   52	   9	JMP	forwards	resume count up	N	2	Y
-		   53	   6				Y	0	N
-		   54	   0				Y	0	N
-	downTen	   55	   F	LDAD	tens	load tens place	N	2	Y
-		   56	   1				Y	0	N
-		   57	   B				Y	0	N
-		   58	   6	ADDI	F	decrement	N	1	Y
-		   59	   F				Y	0	N
-		   5A	   D	STA	tens		N	2	Y
-		   5B	   1				Y	0	N
-		   5C	   B				Y	0	N
-		   5D	   4	OUT	1		N	1	Y
-		   5E	   1				Y	0	N
-		   5F	   7	LDAI	0		N	1	Y
-		   60	   0				Y	0	N
-		   61	   4	OUT	2		N	1	Y
-		   62	   2				Y	0	N
-		   63	   9	JMP	backwards	resume countdown	N	2	Y
-		   64	   1				Y	0	N
-		   65	   2				Y	0	N
+	downTen	   48	   F	LDAD	tens	load tens place	N	2	Y
+		   49	   1				Y	0	N
+		   4A	   B				Y	0	N
+		   4B	   6	ADDI	F	decrement	N	1	Y
+		   4C	   F				Y	0	N
+		   4D	   D	STA	tens		N	2	Y
+		   4E	   1				Y	0	N
+		   4F	   B				Y	0	N
+		   50	   4	OUT	1		N	1	Y
+		   51	   1				Y	0	N
+		   52	   7	LDAI	9	load a 9	N	1	N
+		   53	   9				Y	0	N
+		   54	   9	JMP	downResume	resume countdown	N	2	Y
+		   55	   1				Y	0	N
+		   56	   3				Y	0	N
+		   57	   0	NOP			N	0	Y
+		   58	   0	NOP			N	0	Y
+		   59	   0	NOP			N	0	Y
+		   5A	   0	NOP			N	0	Y
+		   5B	   0	NOP			N	0	Y
+		   5C	   0	NOP			N	0	Y
+		   5D	   0	NOP			N	0	Y
+		   5E	   0	NOP			N	0	Y
+		   5F	   0	NOP			N	0	Y
+		   60	   0	NOP			N	0	Y
+		   61	   0	NOP			N	0	Y
+		   62	   0	NOP			N	0	Y
+		   63	   0	NOP			N	0	Y
+		   64	   0	NOP			N	0	Y
+		   65	   0	NOP			N	0	Y
 		   66	   0	NOP			N	0	Y
 		   67	   0	NOP			N	0	Y
 		   68	   0	NOP			N	0	Y
@@ -137,21 +137,21 @@
 		   88	   0	NOP			N	0	Y
 		   89	   0	NOP			N	0	Y
 		   8A	   0	NOP			N	0	Y
-		   8B	   0	NOP			N	0	Y
-		   8C	   0	NOP			N	0	Y
-		   8D	   0	NOP			N	0	Y
-		   8E	   0	NOP			N	0	Y
-		   8F	   0	NOP			N	0	Y
-		   90	   0	NOP			N	0	Y
-		   91	   0	NOP			N	0	Y
-		   92	   0	NOP			N	0	Y
-		   93	   0	NOP			N	0	Y
-		   94	   0	NOP			N	0	Y
-		   95	   0	NOP			N	0	Y
-		   96	   0	NOP			N	0	Y
-		   97	   0	NOP			N	0	Y
-		   98	   0	NOP			N	0	Y
-		   99	   0	NOP			N	0	Y
+		   8B	   0	NOP			N	0	N
+		   8C	   0	NOP			N	0	N
+		   8D	   0	NOP			N	0	N
+		   8E	   0	NOP			N	0	N
+		   8F	   0	NOP			N	0	N
+		   90	   0	NOP			N	0	N
+		   91	   0	NOP			N	0	N
+		   92	   0	NOP			N	0	N
+		   93	   0	NOP			N	0	N
+		   94	   0	NOP			N	0	N
+		   95	   0	NOP			N	0	N
+		   96	   0	NOP			N	0	N
+		   97	   0	NOP			N	0	N
+		   98	   0	NOP			N	0	N
+		   99	   0	NOP			N	0	N
 		   9A	   0	NOP			N	0	N
 		   9B	   0	NOP			N	0	N
 		   9C	   0	NOP			N	0	N
@@ -175,7 +175,7 @@
 		   AE	   0	NOP			N	0	N
 		   AF	   0	NOP			N	0	N
 	ones	   B0	   0	
-	tens	   B1	   1	
+	tens	   B1	   0	
 		   B2	   0	
 		   B3	   0	
 		   B4	   0	
