@@ -6,19 +6,19 @@
 		   05	   2			initialized	Y	0	N
 	forwards	   06	   5	IN	0	test input	N	1	Y
 		   07	   0				Y	0	N
-		   08	   6	ADDI	9	subtract 7	N	1	Y
-		   09	   9				Y	0	N
+		   08	   6	ADDI	 ???	test input	N	1	Y
+		   09	   X				Y	0	N
 		   0A	   B	JN	backwards	jump if neg	N	2	Y
 		   0B	   C				Y	0	N
 		   0C	   1				Y	0	N
 		   0D	   F	LDAD	ones	load ones value	N	2	Y
 		   0E	   0				Y	0	N
 		   0F	   B				Y	0	N
-		   10	   6	ADDI	7	subtract 9	N	1	Y
+		   10	   6	ADDI	7	subtract 9 to test	N	1	Y
 		   11	   7				Y	0	N
-		   12	   A	JZ	place	increment tens	N	2	Y
-		   13	   X				Y	0	N
-		   14	   X				Y	0	N
+		   12	   A	JZ	upTen	increment tens	N	2	Y
+		   13	   0				Y	0	N
+		   14	   3				Y	0	N
 		   15	   6	ADDI	1	increment	N	1	Y
 		   16	   1				Y	0	N
 		   17	   4	OUT	2	update output	N	1	Y
@@ -28,44 +28,44 @@
 		   1B	   0				Y	0	N
 	backwards	   1C	   5	IN	0	test input	N	1	Y
 		   1D	   0				Y	0	N
-		   1E	   0	NOP			N	0	Y
-		   1F	   0	NOP			N	0	Y
-		   20	   0	NOP			N	0	Y
-		   21	   0	NOP			N	0	Y
-		   22	   0	NOP			N	0	Y
-		   23	   0	NOP			N	0	Y
-		   24	   0	NOP			N	0	Y
-		   25	   0	NOP			N	0	Y
-		   26	   0	NOP			N	0	Y
-		   27	   0	NOP			N	0	Y
-		   28	   0	NOP			N	0	Y
-		   29	   0	NOP			N	0	Y
-		   2A	   0	NOP			N	0	Y
-		   2B	   0	NOP			N	0	Y
-		   2C	   0	NOP			N	0	Y
-		   2D	   0	NOP			N	0	Y
-		   2E	   0	NOP			N	0	Y
-		   2F	   0	NOP			N	0	Y
-		   30	   0	NOP			N	0	Y
-		   31	   0	NOP			N	0	Y
-		   32	   0	NOP			N	0	Y
-		   33	   0	NOP			N	0	Y
-		   34	   0	NOP			N	0	Y
-		   35	   0	NOP			N	0	Y
-		   36	   0	NOP			N	0	Y
-		   37	   0	NOP			N	0	Y
-		   38	   0	NOP			N	0	Y
-		   39	   0	NOP			N	0	Y
-		   3A	   0	NOP			N	0	Y
-		   3B	   0	NOP			N	0	Y
-		   3C	   0	NOP			N	0	Y
-		   3D	   0	NOP			N	0	Y
-		   3E	   0	NOP			N	0	Y
-		   3F	   0	NOP			N	0	Y
-		   40	   0	NOP			N	0	Y
-		   41	   0	NOP			N	0	Y
-		   42	   0	NOP			N	0	Y
-		   43	   0	NOP			N	0	Y
+		   1E	   6	ADDI	 ???	test input	N	1	Y
+		   1F	   X				Y	0	N
+		   20	   B	JN	forwards	jump if neg	N	2	Y
+		   21	   6				Y	0	N
+		   22	   0				Y	0	N
+		   23	   F	LDAD	ones	load ones value	N	2	Y
+		   24	   0				Y	0	N
+		   25	   B				Y	0	N
+		   26	   A	JZ	 ???	decrement tens	N	2	Y
+		   27	   X				Y	0	N
+		   28	   X				Y	0	N
+	tenBack	   29	   6	ADDI	F	decrement	N	1	Y
+		   2A	   F				Y	0	N
+		   2B	   4	OUT	2	update output	N	1	Y
+		   2C	   2				Y	0	N
+		   2D	   9	JMP	backwards	repeat	N	2	Y
+		   2E	   C				Y	0	N
+		   2F	   1				Y	0	N
+	upTen	   30	   F	LDAD	tens	load tens place	N	2	Y
+		   31	   1				Y	0	N
+		   32	   B				Y	0	N
+		   33	   6	ADDI	1	increment	N	1	Y
+		   34	   1				Y	0	N
+		   35	   D	STA	tens	store output	N	2	Y
+		   36	   1				Y	0	N
+		   37	   B				Y	0	N
+		   38	   4	OUT	1	update output	N	1	Y
+		   39	   1				Y	0	N
+		   3A	   7	LDAI	0	load a zero	N	1	Y
+		   3B	   0				Y	0	N
+		   3C	   4	OUT	2	update ones out	N	1	Y
+		   3D	   2				Y	0	N
+		   3E	   D	STA	ones		N	2	Y
+		   3F	   0				Y	0	N
+		   40	   B				Y	0	N
+		   41	   9	JMP	forwards	resume counting	N	2	Y
+		   42	   6				Y	0	N
+		   43	   0				Y	0	N
 		   44	   0	NOP			N	0	Y
 		   45	   0	NOP			N	0	Y
 		   46	   0	NOP			N	0	Y
