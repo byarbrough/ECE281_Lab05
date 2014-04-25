@@ -112,7 +112,15 @@ signal ClockBus_sig : STD_LOGIC_VECTOR (26 downto 0);
 --------------------------------------------------------------------------------------
 --Insert your design's component declaration below	
 --------------------------------------------------------------------------------------
-
+	COMPONENT ROM_176x4
+	PORT(
+		Clock : IN std_logic;
+		CS_L : IN std_logic;
+		R_W : IN std_logic;
+		Addr : IN std_logic_vector(7 downto 0);          
+		Data : OUT std_logic_vector(3 downto 0)
+		);
+	END COMPONENT;
 
 
 --------------------------------------------------------------------------------------
@@ -146,10 +154,6 @@ LED <= CLOCKBUS_SIG(26 DOWNTO 19);
 --		  Example: if you are not using 7-seg display #3 set nibble3 to "0000"
 --------------------------------------------------------------------------------------
 
---nibble0 <= 
---nibble1 <= 
---nibble2 <= 
---nibble3 <= 
 
 --This code converts a nibble to a value that can be displayed on 7-segment display #0
 	sseg0: nibble_to_sseg PORT MAP(
@@ -208,6 +212,13 @@ LED <= CLOCKBUS_SIG(26 DOWNTO 19);
 		Output_3 => nibble0
 	);
 
+	Inst_ROM_176x4: ROM_176x4 PORT MAP(
+		Clock => Clockbus_Sig(23),
+		CS_L => not btn(3),
+		R_W => "0000",
+		Addr => "00000000",
+		Data => "0000"
+	);
 
 end Behavioral;
 
