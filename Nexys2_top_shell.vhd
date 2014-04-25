@@ -1,14 +1,14 @@
 ----------------------------------------------------------------------------------
 -- Company: USAFA
--- Engineer: Silva
+-- Engineer: Silva, Yarbrough
 -- 
 -- Create Date:    12:43:25 07/07/2012 
 -- Module Name:    Nexys2_Lab3top - Behavioral 
 -- Target Devices: Nexys2 Project Board
 -- Tool versions: 
 -- Description: This file is a shell for implementing designs on a NEXYS 2 board
--- 
---
+-- This shell has been linked with the PRISM controller. The ROM file has been modified
+-- The Nexys2 now models the prism controller as it counts from 0-99 and back down (based on inputs)
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
