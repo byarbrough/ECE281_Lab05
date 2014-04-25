@@ -40,8 +40,8 @@
 		   27	   0				Y	0	N
 		   28	   B				Y	0	N
 		   29	   A	JZ	downTen	increment tens	N	2	Y
-		   2A	   8				Y	0	N
-		   2B	   4				Y	0	N
+		   2A	   0				Y	0	N
+		   2B	   5				Y	0	N
 		   2C	   F	LDAD	ones	get the ones again	N	2	N
 		   2D	   0				Y	0	N
 		   2E	   B				Y	0	N
@@ -58,54 +58,54 @@
 	upTen	   39	   F	LDAD	tens	load tens place	N	2	Y
 		   3A	   1				Y	0	N
 		   3B	   B				Y	0	N
-		   3C	   6	ADDI	1	increment	N	1	Y
-		   3D	   1				Y	0	N
-		   3E	   D	STA	tens	store output	N	2	Y
-		   3F	   1				Y	0	N
-		   40	   B				Y	0	N
-		   41	   4	OUT	1	update output	N	1	Y
+		   3C	   6	ADDI	7	zero if 9	N	1	N
+		   3D	   7				Y	0	N
+		   3E	   A	JZ	overHigh	hold at 9	N	2	N
+		   3F	   2				Y	0	N
+		   40	   6				Y	0	N
+		   41	   F	LDAD	tens	reload	N	2	N
 		   42	   1				Y	0	N
-		   43	   7	LDAI	0	load a zero	N	1	Y
-		   44	   0				Y	0	N
-		   45	   9	JMP	upResume	resume count up	N	2	Y
-		   46	   8				Y	0	N
+		   43	   B				Y	0	N
+		   44	   6	ADDI	1	increment	N	1	Y
+		   45	   1				Y	0	N
+	lappedUp	   46	   D	STA	tens	store output	N	2	Y
 		   47	   1				Y	0	N
-	downTen	   48	   F	LDAD	tens	load tens place	N	2	Y
-		   49	   1				Y	0	N
-		   4A	   B				Y	0	N
-		   4B	   6	ADDI	F	decrement	N	1	Y
-		   4C	   F				Y	0	N
-		   4D	   D	STA	tens		N	2	Y
-		   4E	   1				Y	0	N
-		   4F	   B				Y	0	N
-		   50	   4	OUT	1		N	1	Y
+		   48	   B				Y	0	N
+		   49	   4	OUT	1	update output	N	1	Y
+		   4A	   1				Y	0	N
+		   4B	   7	LDAI	0	load a zero	N	1	Y
+		   4C	   0				Y	0	N
+		   4D	   9	JMP	upResume	resume count up	N	2	Y
+		   4E	   8				Y	0	N
+		   4F	   1				Y	0	N
+	downTen	   50	   F	LDAD	tens	load tens place	N	2	Y
 		   51	   1				Y	0	N
-		   52	   7	LDAI	9	load a 9	N	1	N
-		   53	   9				Y	0	N
-		   54	   9	JMP	downResume	resume countdown	N	2	Y
-		   55	   1				Y	0	N
-		   56	   3				Y	0	N
-		   57	   0	NOP			N	0	Y
-		   58	   0	NOP			N	0	Y
-		   59	   0	NOP			N	0	Y
-		   5A	   0	NOP			N	0	Y
-		   5B	   0	NOP			N	0	Y
-		   5C	   0	NOP			N	0	Y
-		   5D	   0	NOP			N	0	Y
-		   5E	   0	NOP			N	0	Y
-		   5F	   0	NOP			N	0	Y
-		   60	   0	NOP			N	0	Y
-		   61	   0	NOP			N	0	Y
-		   62	   0	NOP			N	0	Y
-		   63	   0	NOP			N	0	Y
-		   64	   0	NOP			N	0	Y
-		   65	   0	NOP			N	0	Y
-		   66	   0	NOP			N	0	Y
-		   67	   0	NOP			N	0	Y
-		   68	   0	NOP			N	0	Y
-		   69	   0	NOP			N	0	Y
-		   6A	   0	NOP			N	0	Y
-		   6B	   0	NOP			N	0	Y
+		   52	   B				Y	0	N
+		   53	   A	JZ	overLow	hold at zero	N	2	N
+		   54	   7				Y	0	N
+		   55	   6				Y	0	N
+		   56	   6	ADDI	F	decrement	N	1	Y
+		   57	   F				Y	0	N
+	lappedDown	   58	   D	STA	tens		N	2	Y
+		   59	   1				Y	0	N
+		   5A	   B				Y	0	N
+		   5B	   4	OUT	1		N	1	Y
+		   5C	   1				Y	0	N
+		   5D	   7	LDAI	9	load a 9	N	1	N
+		   5E	   9				Y	0	N
+		   5F	   9	JMP	downResume	resume countdown	N	2	Y
+		   60	   1				Y	0	N
+		   61	   3				Y	0	N
+	overHigh	   62	   7	LDAI	0	go to zero	N	1	Y
+		   63	   0				Y	0	N
+		   64	   9	JMP	lappedUp	keep going	N	2	Y
+		   65	   6				Y	0	N
+		   66	   4				Y	0	N
+	overLow	   67	   7	LDAI	9	test input	N	1	Y
+		   68	   9				Y	0	N
+		   69	   9	JMP	lappedDown	continue to hold	N	2	Y
+		   6A	   8				Y	0	N
+		   6B	   5				Y	0	N
 		   6C	   0	NOP			N	0	Y
 		   6D	   0	NOP			N	0	Y
 		   6E	   0	NOP			N	0	Y
@@ -137,13 +137,13 @@
 		   88	   0	NOP			N	0	Y
 		   89	   0	NOP			N	0	Y
 		   8A	   0	NOP			N	0	Y
-		   8B	   0	NOP			N	0	N
-		   8C	   0	NOP			N	0	N
-		   8D	   0	NOP			N	0	N
-		   8E	   0	NOP			N	0	N
-		   8F	   0	NOP			N	0	N
-		   90	   0	NOP			N	0	N
-		   91	   0	NOP			N	0	N
+		   8B	   0	NOP			N	0	Y
+		   8C	   0	NOP			N	0	Y
+		   8D	   0	NOP			N	0	Y
+		   8E	   0	NOP			N	0	Y
+		   8F	   0	NOP			N	0	Y
+		   90	   0	NOP			N	0	Y
+		   91	   0	NOP			N	0	Y
 		   92	   0	NOP			N	0	N
 		   93	   0	NOP			N	0	N
 		   94	   0	NOP			N	0	N
@@ -175,7 +175,7 @@
 		   AE	   0	NOP			N	0	N
 		   AF	   0	NOP			N	0	N
 	ones	   B0	   0	
-	tens	   B1	   0	
+	tens	   B1	   1	
 		   B2	   0	
 		   B3	   0	
 		   B4	   0	
