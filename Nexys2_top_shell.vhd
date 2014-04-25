@@ -112,15 +112,6 @@ signal ClockBus_sig : STD_LOGIC_VECTOR (26 downto 0);
 --------------------------------------------------------------------------------------
 --Insert your design's component declaration below	
 --------------------------------------------------------------------------------------
-	COMPONENT ROM_176x4
-	PORT(
-		Clock : IN std_logic;
-		CS_L : IN std_logic;
-		R_W : IN std_logic;
-		Addr : IN std_logic_vector(7 downto 0);          
-		Data : OUT std_logic_vector(3 downto 0)
-		);
-	END COMPONENT;
 
 
 --------------------------------------------------------------------------------------
@@ -199,7 +190,7 @@ LED <= CLOCKBUS_SIG(26 DOWNTO 19);
 
 
 	Inst_PRISM: PRISM PORT MAP(
-		Clock => Clockbus_Sig(23),
+		Clock => Clockbus_Sig(19),
 		Reset_L => not btn(3),
 		--Control_Bus => ,
 		Input_0 => switch(3 downto 0),
@@ -212,13 +203,6 @@ LED <= CLOCKBUS_SIG(26 DOWNTO 19);
 		Output_3 => nibble0
 	);
 
-	Inst_ROM_176x4: ROM_176x4 PORT MAP(
-		Clock => Clockbus_Sig(23),
-		CS_L => not btn(3),
-		R_W => "0000",
-		Addr => "00000000",
-		Data => "0000"
-	);
 
 end Behavioral;
 
