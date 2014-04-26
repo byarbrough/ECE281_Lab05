@@ -1,56 +1,56 @@
-	start	   00	   5	IN	0	read the input	N	1	Y
-		   01	   0				Y	0	N
-		   02	   A	JZ	zero	if zero	N	2	Y
-		   03	   8				Y	0	N
+		   00	   9	JMP	waiting	start at zero	N	2	N
+		   01	   A				Y	0	N
+		   02	   1				Y	0	N
+	start	   03	   5	IN	0	read the input	N	1	Y
 		   04	   0				Y	0	N
-		   05	   9	JMP	start		N	2	Y
-		   06	   0				Y	0	N
+		   05	   A	JZ	zero	if zero	N	2	Y
+		   06	   B				Y	0	N
 		   07	   0				Y	0	N
-	zero	   08	   F	LDAD	count		N	2	Y
-		   09	   0				Y	0	N
-		   0A	   B				Y	0	N
-		   0B	   6	ADDI	1	increment	N	1	Y
-		   0C	   1				Y	0	N
-		   0D	   4	OUT	0	display count	N	1	Y
-		   0E	   0				Y	0	N
-		   0F	   D	STA	count		N	2	Y
-		   10	   0				Y	0	N
-		   11	   B				Y	0	N
-	waiting	   12	   5	IN	0	get input	N	1	Y
-		   13	   0				Y	0	N
-		   14	   A	JZ	waiting	continue to wait	N	2	Y
-		   15	   2				Y	0	N
-		   16	   1				Y	0	N
-		   17	   9	JMP	start	back to top	N	2	Y
+		   08	   9	JMP	start	otherwise, repeat	N	2	Y
+		   09	   3				Y	0	N
+		   0A	   0				Y	0	N
+	zero	   0B	   F	LDAD	count	read the count	N	2	Y
+		   0C	   0				Y	0	N
+		   0D	   B				Y	0	N
+		   0E	   6	ADDI	2	increment twice	N	1	Y
+		   0F	   2				Y	0	N
+		   10	   A	JZ	dead	overflow	N	2	N
+		   11	   2				Y	0	N
+		   12	   2				Y	0	N
+		   13	   6	ADDI	F	decrement 1	N	1	N
+		   14	   F				Y	0	N
+		   15	   4	OUT	0	display count	N	1	Y
+		   16	   0				Y	0	N
+		   17	   D	STA	count	store count	N	2	Y
 		   18	   0				Y	0	N
-		   19	   0				Y	0	N
-		   1A	   0	NOP			N	0	Y
-		   1B	   0	NOP			N	0	Y
-		   1C	   0	NOP			N	0	Y
-		   1D	   0	NOP			N	0	Y
-		   1E	   0	NOP			N	0	Y
-		   1F	   0	NOP			N	0	Y
-		   20	   0	NOP			N	0	Y
-		   21	   0	NOP			N	0	Y
-		   22	   0	NOP			N	0	Y
-		   23	   0	NOP			N	0	Y
-		   24	   0	NOP			N	0	Y
-		   25	   0	NOP			N	0	Y
-		   26	   0	NOP			N	0	Y
-		   27	   0	NOP			N	0	Y
-		   28	   0	NOP			N	0	Y
-		   29	   0	NOP			N	0	Y
-		   2A	   0	NOP			N	0	Y
-		   2B	   0	NOP			N	0	Y
-		   2C	   0	NOP			N	0	Y
-		   2D	   0	NOP			N	0	Y
-		   2E	   0	NOP			N	0	Y
-		   2F	   0	NOP			N	0	Y
-		   30	   0	NOP			N	0	Y
-		   31	   0	NOP			N	0	Y
-		   32	   0	NOP			N	0	Y
-		   33	   0	NOP			N	0	Y
-		   34	   0	NOP			N	0	Y
+		   19	   B				Y	0	N
+	waiting	   1A	   5	IN	0	get input	N	1	Y
+		   1B	   0				Y	0	N
+		   1C	   A	JZ	waiting	continue to wait	N	2	Y
+		   1D	   A				Y	0	N
+		   1E	   1				Y	0	N
+		   1F	   9	JMP	start	back to top	N	2	Y
+		   20	   3				Y	0	N
+		   21	   0				Y	0	N
+	dead	   22	   7	LDAI	D		N	1	Y
+		   23	   D				Y	0	N
+		   24	   4	OUT	0		N	1	Y
+		   25	   0				Y	0	N
+		   26	   7	LDAI	E		N	1	Y
+		   27	   E				Y	0	N
+		   28	   4	OUT	1		N	1	Y
+		   29	   1				Y	0	N
+		   2A	   7	LDAI	A		N	1	Y
+		   2B	   A				Y	0	N
+		   2C	   4	OUT	2		N	1	Y
+		   2D	   2				Y	0	N
+		   2E	   7	LDAI	D		N	1	Y
+		   2F	   D				Y	0	N
+		   30	   4	OUT	3		N	1	Y
+		   31	   3				Y	0	N
+	end	   32	   9	JMP	end	infinite loop	N	2	Y
+		   33	   2				Y	0	N
+		   34	   3				Y	0	N
 		   35	   0	NOP			N	0	Y
 		   36	   0	NOP			N	0	Y
 		   37	   0	NOP			N	0	Y
@@ -171,10 +171,10 @@
 		   AA	   0	NOP			N	0	Y
 		   AB	   0	NOP			N	0	Y
 		   AC	   0	NOP			N	0	Y
-		   AD	   0	NOP			N	0	N
-		   AE	   0	NOP			N	0	N
-		   AF	   0	NOP			N	0	N
-	count	   B0	   0	
+		   AD	   0	NOP			N	0	Y
+		   AE	   0	NOP			N	0	Y
+		   AF	   0	NOP			N	0	Y
+	count	   B0	   E	
 		   B1	   0	
 		   B2	   0	
 		   B3	   0	
