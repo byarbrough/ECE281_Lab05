@@ -10,7 +10,14 @@ PRISM.vhd | Interaction between PRISM code and Nexys2
 Part2_PRISM.psm | PRISM code for the second part of the project: the counter
 RAM_bug.PNG | Screenshot of VHDL error
 ROM_176x4.vhd | Original ROM file
-ROM
+ROM_176x4 _Count.vhd | ROM for part2
+ROM_176x4 _Toggle.vhd | ROM for the creative segment
+part2_counter.bit | Bit file for Part 2
+part1_bit | Bit file for part 1
+sim_0 _to _ 165ns.PNG | Screenshot of Part 1 running testbench
+toggleCount.bit | Bit file for creative segment
+toggle_counter _PRISM.psm | PRISM file for creative segment
+
 
 
 ##Part 1
@@ -32,6 +39,8 @@ So what does this program do?
 #### When I wired everything up to the topshell, Part 1 worked as expected. HUZZAH!
 
 ##Part 2
+
+####This was a little more of a hassel
 
 ##Questions
 I know this is a boring, uncreative way of doing this, but it's project season:
