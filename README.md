@@ -1,7 +1,17 @@
 ECE281_Lab05
 ============
 
-More PRISM
+More PRISM!
+
+| File Name | Description |
+------------|------------
+Nexys2_top _shell.vhd | Top level file, interacts with board
+PRISM.vhd | Interaction between PRISM code and Nexys2
+Part2_PRISM.psm | PRISM code for the second part of the project: the counter
+RAM_bug.PNG | Screenshot of VHDL error
+ROM_176x4.vhd | Original ROM file
+ROM
+
 
 ##Part 1
 
