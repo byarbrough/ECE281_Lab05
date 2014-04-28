@@ -62,33 +62,27 @@ Step by step:
     
     b. IRLd - HIGH
     
-    c. ACCLd - 
+    c. ACCLd - LOW
 
 2.	The current state is Decode LoAddr and the IR contains “OUT.”  What are the control signals are asserted, and what will the next state be?
 
-
-
-
-
-
+    a. marlold - HIGH
+    b. pcld - HIGH
+    c. r_w - HIGH
+    d. iosel_l - HIGH
+    e. All others LOW
+    
+    The next state will be _Direct IO Execute_
 
 3.	What are the three status signals sent from the PRISM datapath to the PRISM controller?
 
-
-
-
-
-
+    I'm not really sure. By the diagram below there are only two outputs from Datapath, Reset and Clock, which are inputs to the controller. These aren't really status signals either...
 
 4.	Why is it important that ACCLd signal be active during the execute state for the ADDI instruction?
 
-
-
-
-
-
+    Becuase ADDI adds the operand to the number in the accumulator, ACCLd must be high so that the accumulator can update.
 
 5.	What changes are necessary to the PRISM datapath to add another instruction (SUBI, which would subtract an immediate value from the accumulator) to the instruction set?
 
-
+    It depends on how that was done. If it was to be an independent instruction than one of the instructions would have to be removed or a MUX with another line would have to be used to overcome the 16 instruction limit. This would then cause problems because _Fetch_ would have to get more bits. It really isn't a very easy change; it is typically better to just use "NEG" and manipulate memory or do the Two's Compliment by hand.
 
