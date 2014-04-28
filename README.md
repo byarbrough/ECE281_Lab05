@@ -15,6 +15,7 @@ ROM_176x4 _Toggle.vhd | ROM for the creative segment
 part2_counter.bit | Bit file for Part 2
 part1_bit | Bit file for part 1
 sim_0 _to _ 165ns.PNG | Screenshot of Part 1 running testbench
+state_diagram.PNG | State Diagram for PRISM. From Manual.
 toggleCount.bit | Bit file for creative segment
 toggle_counter _PRISM.psm | PRISM file for creative segment
 
@@ -30,10 +31,19 @@ Here is the initial testbench simulation:
 
 As you can see, there are a lot of signals in there. Each segment is labled in accordance with this state diagram:
 
+![alt text](https://github.com/byarbrough/ECE281_Lab05/blob/master/state_diagram.PNG?raw=true "PRISM State Diagram")
 
+Figuring out what this prgram does really wasn't incredibly difficult. It starts with _irld_ high, which signals a fetch (the program has to begin with a fetch). Once PRISM has fetched the incoming instruction it needs to decode whatever was just on the data bus, and is now on the instruction register. Depending on which instruction it is (ROT, ADDI, LDAI, ect.) the state diagram progresses accordingly. The important thing to note is that it always returns to _Fetch_ and then _Decode_ after every execution.
 
 ####The Big Picture
-So what does this program do?
+So what does this program do? Big picture, it starts at '9' and then coutns up by '1' over and over, continuously outputting the sum to port 3.
+
+Step by step:
+1. LDAI: Load '8' into the accumulator
+2. ADDI: Add '1' to the accumulator
+3. OUT: Display the result on Port 3
+4. JN: Jump to "02"
+5. At this point the program repeats from Step 2
 
 ###Controller State Walkthrough
 
@@ -45,13 +55,12 @@ So what does this program do?
 ####This was a little more of a hassel
 
 ##Questions
-I know this is a boring, uncreative way of doing this, but it's project season:
 
 1.	When the controller’s current state is “FETCH,” what is the status of the following control lines:
 
-    a. PCLd - 
+    a. PCLd - HIGH
     
-    b. IRLd - 
+    b. IRLd - HIGH
     
     c. ACCLd - 
 
