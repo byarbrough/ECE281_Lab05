@@ -4,7 +4,7 @@ use ieee.std_logic_unsigned.all;
 
 
 entity ROM_176x4 is
-  port (Clock : in std_logic;
+  port (--Clock : in std_logic;
   		CS_L : in std_logic;
         R_W  : in std_logic;  
         Addr   : in std_logic_vector(7 downto 0);  
@@ -136,15 +136,12 @@ begin
 	Read_Enable <=  '0' when(CS_L='0' and R_W = '1') else '1';
 
 	
-	process (Clock)  
+	process (Read_Enable)  
 	begin  	
-		if(Clock='0') then
-			if(Read_Enable = '0') then
-			  Data  <= ROM(conv_integer(Addr)); 
-		  	else
-			  Data <= "ZZZZ";
-	      	end if; 
-		else Data <= "ZZZZ";
+		if(Read_Enable = '0') then
+		  Data  <= ROM(conv_integer(Addr)); 
+		else
+		  Data <= "ZZZZ";
 		end if;
 	
 	end process;
