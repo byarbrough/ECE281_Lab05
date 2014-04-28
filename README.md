@@ -28,7 +28,9 @@ Here is the initial testbench simulation:
 
 ![alt text](https://github.com/byarbrough/ECE281_Lab05/blob/master/sim_0_to_165ns.PNG?raw=true "PRISM Testbench")
 
-As you can see, there are a lot of signals in there.
+As you can see, there are a lot of signals in there. Each segment is labled in accordance with this state diagram:
+
+
 
 ####The Big Picture
 So what does this program do?
