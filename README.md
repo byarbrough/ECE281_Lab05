@@ -12,6 +12,7 @@ RAM_bug.PNG | Screenshot of VHDL error
 ROM_176x4.vhd | Original ROM file
 ROM_176x4 _Count.vhd | ROM for part2
 ROM_176x4 _Toggle.vhd | ROM for the creative segment
+overview_schem.PNG | Controller and Datapath Schematic from manual.
 part2_counter.bit | Bit file for Part 2
 part1_bit | Bit file for part 1
 sim_0 _to _ 165ns.PNG | Screenshot of Part 1 running testbench
@@ -45,14 +46,19 @@ Step by step:
 4. JN: Jump to "02"
 5. At this point the program repeats from Step 2
 
-###Controller State Walkthrough
-
-
 #### When I wired everything up to the topshell, Part 1 worked as expected. HUZZAH!
+Captain Timble verified this in class.
 
 ##Part 2
+Write a counter that counts from 00-99 and down, according to an input.
 
-####This was a little more of a hassel
+![alt text]flowchart
+
+The PRISM Code for this flowchart is in the repo. It works quite well.
+
+####Wiring was a little more of a hassel
+Quite frankly, I think there was a magic smoke error along the way which was not my fault. Allow me to explain why.
+
 
 ##Questions
 
@@ -77,7 +83,7 @@ Step by step:
 3.	What are the three status signals sent from the PRISM datapath to the PRISM controller?
 
     I'm not really sure. By the diagram below there are only two outputs from Datapath, Reset and Clock, which are inputs to the controller. These aren't really status signals either...
-
+    ![alt text](https://github.com/byarbrough/ECE281_Lab05/blob/master/overview_schem.PNG?raw=true "PRISIM Overview")
 4.	Why is it important that ACCLd signal be active during the execute state for the ADDI instruction?
 
     Becuase ADDI adds the operand to the number in the accumulator, ACCLd must be high so that the accumulator can update.
@@ -86,3 +92,8 @@ Step by step:
 
     It depends on how that was done. If it was to be an independent instruction than one of the instructions would have to be removed or a MUX with another line would have to be used to overcome the 16 instruction limit. This would then cause problems because _Fetch_ would have to get more bits. It really isn't a very easy change; it is typically better to just use "NEG" and manipulate memory or do the Two's Compliment by hand.
 
+
+####Documentation
+In class colaboration on how to fix clock cycles.
+
+Borrowed many of the images from tehe ECE 281 PRISM Manual.
