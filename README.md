@@ -12,6 +12,8 @@ RAM_bug.PNG | Screenshot of VHDL error
 ROM_176x4.vhd | Original ROM file
 ROM_176x4 _Count.vhd | ROM for part2
 ROM_176x4 _Toggle.vhd | ROM for the creative segment
+flow1.PNG | First page of counter flowchart
+flow2.PNG | Second page of counter flowchart
 overview_schem.PNG | Controller and Datapath Schematic from manual.
 part2_counter.bit | Bit file for Part 2
 part1_bit | Bit file for part 1
@@ -52,7 +54,10 @@ Captain Trimble verified this in class.
 ##Part 2
 Write a counter that counts from 00-99 and down, according to an input.
 
-![alt text]flowchart
+The below charts are the flowcharts which the PRISM program follows to make such a counter. There are several "methods" indicated by the ovals which perform a specific task. The general layout can be described as "count ones until you have to count a ten, count the ten while looking for overflow, then go back to counting ones." This allows for keeping track of two digits: one for each display.
+
+![alt text](https://github.com/byarbrough/ECE281_Lab05/blob/master/flow1.PNG?raw=true "Flowchart")
+![alt text](https://github.com/byarbrough/ECE281_Lab05/blob/master/flow2.PNG?raw=true "Flowchart")
 
 The PRISM Code for this flowchart is in the repo. It works quite well.
 
